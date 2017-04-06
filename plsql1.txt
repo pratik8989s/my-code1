@@ -1,0 +1,252 @@
+***************************************************************************************************
+***************************************************************************************************
+objects
+
+
+procedure-------- set of instructions that are coded for specific purpose
+it is kept in compiled form.
+they are the objects which do not return value by default
+
+
+function-----------
+theyre the objects used to do some processing and return the final output
+
+
+
+trigger---- theyre the set of object that execute when some events gets generated
+package----set of functions and procedures that are grouped together for specific purpose
+
+
+cursor-- objects that traverses through the data kept in the memory
+
+also creates anonymous block
+not retained physically.
+translated and executed.
+
+SET SERVEROUTPUT ON
+DECLARE
+	BEGIN
+		DBMS_OUTPUT.PUT_LINE('HELLO WELCOME TO PLSQL');
+	END;
+/
+
+PL/SQL procedure successfully completed.
+
+--
+DECLARING variables
+DECLARE
+A INT:=&X;
+B INT:=10;
+BEGIN
+	DBMS_OUTPUT.PUT_LINE('ADDITION= '||(A+B));
+		
+END;
+/
+
+
+SYNTAX FOR DEFINING PROCEDURE
+
+CREATE PROCEDURE TR_13
+AS
+  BEGIN
+	DBMS_OUTPUT.PUT_LINE('HELLO');
+  END;
+/
+
+
+EXECUTE TR_13;
+OR
+EXCE PR_13;
+
+
+CREATE OR REPLACE PROCEDURE TR_13 (A INT,B INT)
+AS
+  BEGIN
+	DBMS_OUTPUT.PUT_LINE(A*B);
+  END;
+/
+
+EXECUTE PR_13(4,5);
+OR EXEC PR_13(4,5);
+
+
+SHOW ERROR
+OR
+SHOW ERR
+
+
+
+CREATE A PROCEDURE TO PERFORM ALL ARITHEMATIC OPERATIONS USING GIVEN PARAMETERS
+
+CREATE OR REPLACE PROCEDURE TR_13 (A INT,B INT)
+AS
+  BEGIN
+	DBMS_OUTPUT.PUT_LINE('MULTIPLICATION'||(A*B));
+	DBMS_OUTPUT.PUT_LINE('DIVISION'||(A/B));
+	DBMS_OUTPUT.PUT_LINE('ADDITION'||(A+B));
+	DBMS_OUTPUT.PUT_LINE('MINUS'||(A-B));
+  END;
+/
+
+
+-------
+
+
+CREATE OR REPLACE PROCEDURE TR_13 (A INT,B INT)
+AS
+  BEGIN
+IF(A>B) THEN
+DBMS_OUTPUT.PUT_LINE('A IS GREATER THAN B');
+ELSE
+DBMS_OUTPUT.PUT_LINE('B IS GREATER THAN A');
+END IF;	
+END;
+/
+
+
+
+CREATE OR REPLACE PROCEDURE TR_13 (A INT,B INT,C INT)
+AS
+  BEGIN
+	IF(A>B) THEN
+	DBMS_OUTPUT.PUT_LINE(A||' IS GREATER THAN '||B);
+	ELSIF A>C THEN
+	DBMS_OUTPUT.PUT_LINE('A IS GREATER THAN C');
+	ELSE
+	DBMS_OUTPUT.PUT_LINE('ELSE PART IS EXECUTED');
+	END IF;	
+END;
+/
+
+
+WRITE A PROCEDURE TO THE HIGHEST AND SMALLEST NO FROM THE 3 VALUES SUPLLIED.
+
+CREATE OR REPLACE PROCEDURE TR_13 (A INT,B INT,C INT)
+AS
+  BEGIN
+	IF(A>B) THEN
+	DBMS_OUTPUT.PUT_LINE(A||' IS GREATER THAN '||B);
+	ELSIF A>C THEN
+	DBMS_OUTPUT.PUT_LINE(A||' IS GREATEST ');
+	END IF;
+
+	IF B>A THEN
+	DBMS_OUTPUT.PUT_LINE(B||'GREATER THAN'||A);
+	ELSIF B>C THEN
+	DBMS_OUTPUT.PUT_LINE(B||' IS GREATEST');
+	END IF;
+
+	IF C>A THEN
+	DBMS_OUTPUT.PUT_LINE(C||' IS GREATEST');
+	END IF;	
+END;
+/
+
+==================
+CREATE OR REPLACE PROCEDURE TR_13 (A INT,B INT,C INT)
+AS
+  BEGIN
+	IF(A>B AND A>C) THEN
+	DBMS_OUTPUT.PUT_LINE(A||' IS GREATEST');
+	ELSIF (B>A AND B>C) THEN
+	DBMS_OUTPUT.PUT_LINE(B||' IS GREATEST');
+	ELSIF (C>A AND C>B) THEN
+	DBMS_OUTPUT.PUT_LINE(C||' IS GREATEST');
+	END IF;
+
+	IF(A<B AND A<C) THEN
+	DBMS_OUTPUT.PUT_LINE(A||' IS LEAST');
+	ELSIF (B<A AND B<C) THEN
+	DBMS_OUTPUT.PUT_LINE(B||' IS LEAST');
+	ELSIF (C<A AND C<B) THEN
+	DBMS_OUTPUT.PUT_LINE(C||' IS LEAST');
+	END IF;
+
+END;
+/
+
+EXEC TR_13(10,20,30);
+
+=====================
+
+DEFAULTS SHLD BE TO THE LEFT
+***
+=====
+
+
+
+
+
+CREATE OR REPLACE PROCEDURE PR_13(A INT)
+AS
+  BEGIN
+	IF (A>10 OR A=99) THEN
+	DBMS_OUTPUT.PUT_LINE(A||' IS 2 DIGIT NO');
+ELSE
+DBMS_OUTPUT.PUT_LINE(A||' IS NOT 2 DIGIT');
+END IF;
+END;
+
+
+CREATE OR REPLACE PROCEDURE PR_13(A VARCHAR2)
+AS
+  BEGIN
+	IF (A='tech' OR A='TECH') THEN
+	DBMS_OUTPUT.PUT_LINE('LOGGED IN');
+ELSE
+DBMS_OUTPUT.PUT_LINE(' NOT LOGGED IN');
+END IF;
+END;
+/
+
+
+
+======
+
+CREATE OR REPLACE PROCEDURE PR_13(A INT, B INT DEFAULT 3,C INT DEFAULT 5)
+AS
+ANS INT;
+BEGIN
+ANS:=A+B+C;
+DBMS_OUTPUT.PUT_LINE(ANS||' : THIS IS OUTPUT');
+END;
+/
+
+EXEC PR_13(B=>3,A=>5,C=>56);
+
+
+=========
+
+CREATE OR REPLACE PROCEDURE PR_13(A INT)
+AS
+ENAM VARCHAR2(20);
+BEGIN
+SELECT ENAME INTO ENAM FROM EMP WHERE EMPNO=A;
+DBMS_OUTPUT.PUT_LINE('NAME='||ENAM||' OF EMPNO'||A);
+END;
+/
+
+EXEC PR_13(7900);
+
+
+===========
+
+
+
+SELECT TEXT FROM USER_SOURCE WHERE NAME='PR_13';
+
+SHOWS CODE
+
+
+
+
+
+
+
+
+
+***************************************************************************************************
+******************************************************************************************************************************************************************************************************
+******************************************************************************************************************************************************************************************************
+***************************************************************************************************
+
